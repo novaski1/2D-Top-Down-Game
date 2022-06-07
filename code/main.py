@@ -21,11 +21,10 @@ class Game:
                     sys.exit()
 
             self.screen.fill('black')
-            debug('hello')
-            self.level.run()
+            self.level.run(self.screen)
             pygame.display.update()
             self.clock.tick(FPS)
-
+            #debug(self.clock)
 
 if __name__ == '__main__':
     game = Game()
