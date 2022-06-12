@@ -23,7 +23,7 @@ class Level:
         self.player_hands = Hand((10,10),[self.visible_sprites],self.obstacle_sprites,self.player)
 
         self.layouts = {
-            'boundary': import_csv_layout('../map/out.csv')
+            'boundary': import_csv_layout('map/out.csv')
         }
 
         self.mob_group = []
@@ -103,8 +103,8 @@ class YSortCameraGroup(pygame.sprite.Group):
         self.half_height = self.display_surface.get_size()[1] // 2
         self.offset = pygame.math.Vector2()
 
-        self.floor_surf = pygame.image.load('../graphics/tilemap/map.png').convert()
-        self.floor_chunks = chunk_loading('../graphics/tilemap/chunks/')
+        #self.floor_surf = pygame.image.load('../graphics/tilemap/map.png').convert()
+        self.floor_chunks = chunk_loading('graphics/tilemap/chunks/')
 
     def custom_draw(self,player,player_hands,screen,debug_mode):
         self.offset.x = player.rect.centerx - self.half_width + (pygame.mouse.get_pos()[0] - self.half_width)/15

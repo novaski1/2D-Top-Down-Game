@@ -27,11 +27,11 @@ def chunk_loading(path):
     terrain_map = [[] for x in range(N_CHUNKS)]
     for i in range(N_CHUNKS-1):
         for j in range(N_CHUNKS-1):
-            chunk_no = str('[' + str(i) + ';' + str(j) + ']')
-            chunk_img = pygame.image.load(str(path + chunk_no + '.png')).convert()
+            chunk = str(path + '[' + str(i) + ';' + str(j) + ']' + '.png')
+            print(chunk)
+            chunk_img = pygame.image.load(chunk).convert()
             chunk_img = pygame.transform.scale(chunk_img,(chunk_img.get_height()*4,chunk_img.get_width()*4))
 
             terrain_map[i].append(chunk_img)
     
     return(terrain_map)
-

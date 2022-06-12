@@ -1,7 +1,6 @@
 import pygame
-from regex import R
 from settings import *
-from debug import debug 
+from debug import debug
 from support import import_folder
 from entity import Entity
 import math
@@ -16,7 +15,7 @@ class Mob(Entity):
         if group_size >= 100: self.kill()
 
         # Rect setup
-        self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
+        self.image = pygame.image.load('graphics/test/player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(64, 64))
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-20,-8)
@@ -58,7 +57,6 @@ class Mob(Entity):
         self.mob_group_avgposition_y = 0
         self.visible_sprites = visible_sprites
         self.obstacle_sprites = obstacle_sprites
-
 
     def collision(self,direction):
         mob_group_position_x = []

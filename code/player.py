@@ -13,7 +13,7 @@ class Player(Entity):
         super().__init__(pos,groups,obstacle_sprites)
 
         # Rect setup
-        self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
+        self.image = pygame.image.load('graphics/test/player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(64, 64))
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-20,-8)
@@ -131,7 +131,7 @@ class Player(Entity):
 class Hand(pygame.sprite.Sprite):
     def __init__(self,pos,groups,obstacle_sprites,player):
         super().__init__(groups)
-        self.image = pygame.image.load('../graphics/player/hands.png').convert_alpha()
+        self.image = pygame.image.load('graphics/player/hands.png').convert_alpha()
         #self.image = pygame.transform.scale(self.image,(128, 128))
         self.image = pygame.transform.scale(self.image,(128, 128))
         self.image_left = pygame.transform.flip(self.image, False, True)

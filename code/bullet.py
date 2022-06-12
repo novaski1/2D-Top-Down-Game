@@ -4,7 +4,7 @@ from debug import debug
 class Bullet(pygame.sprite.Sprite):
     def __init__(self,pos,groups,obstacle_sprites,bullet_direction,speed):
         super().__init__(groups)
-        self.image = pygame.image.load('../graphics/player/bullet_off.png').convert_alpha()
+        self.image = pygame.image.load('graphics/player/bullet_off.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(32, 32))
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-10,-10)
@@ -58,10 +58,10 @@ class Bullet(pygame.sprite.Sprite):
     
     def change_image(self):
         if self.living_time >= 2: 
-            self.image = pygame.image.load('../graphics/player/bullet_on.png').convert_alpha()
+            self.image = pygame.image.load('graphics/player/bullet_on.png').convert_alpha()
             self.image = pygame.transform.scale(self.image,(32, 32))
         if self.death == True:
-            self.image = pygame.image.load('../graphics/player/bullet_off.png').convert_alpha()
+            self.image = pygame.image.load('graphics/player/bullet_off.png').convert_alpha()
             self.image = pygame.transform.scale(self.image,(32, 32))
 
 

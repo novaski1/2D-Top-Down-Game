@@ -12,7 +12,7 @@ class Entity(pygame.sprite.Sprite):
         super().__init__(groups)
 
         # Rect setup
-        self.image = pygame.image.load('../graphics/test/player.png').convert_alpha()
+        self.image = pygame.image.load('graphics/test/player.png').convert_alpha()
         self.image = pygame.transform.scale(self.image,(64, 64))
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(-8,-26)
@@ -34,7 +34,7 @@ class Entity(pygame.sprite.Sprite):
         self.obstacle_sprites = obstacle_sprites
 
     def import_entity_assets(self):
-        character_path = '../graphics/player/'
+        character_path = 'graphics/player/'
         self.animations = {'up': [], 'down': [], 'left': [], 'right': [],
                             'up_idle': [], 'down_idle': [], 'left_idle': [], 'right_idle': []}
 
