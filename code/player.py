@@ -28,9 +28,9 @@ class Player(Entity):
         # Movement
         self.direction = pygame.math.Vector2()
         self.speed = 5
-        self.attacking = False
+        self.change_fps = False
         self.cooldown = 400
-        self.attack_time = None
+        self.change_fps_time = None
         self.dashing = 'no'
         self.dashing_time = 100
 
@@ -86,20 +86,17 @@ class Player(Entity):
             self.direction.x = 0
         
         # Attack input
-        if keys[pygame.K_0] and not self.attacking:
-            self.attacking = True
-            self.attack_time = pygame.time.get_ticks()
-            print('attack')
+        if keys[pygame.K_p]:
+            if self.change_fps == False: 
+                self.change_fps = True
+                self.change_fps_time = pygame.time.get_ticks()
+                print(FPS)
+                if globals()['FPS'] == 30: globals()['FPS'] = 60
+                if globals()['FPS'] == 60: globals()['FPS'] = 165
+                if globals()['FPS'] == 165: globals()['FPS'] = 30
 
-        # Magic input
-        if keys[pygame.K_LSHIFT] and not self.attacking:
-            self.attacking = True
-            print('magic')
-        
-        # Jumping
-        if keys[pygame.K_SPACE] and self.dashing != 'yes':
-            self.dashing = 'yes'
-            self.dashing_time = pygame.time.get_ticks()
+            
+            
     
     def dash(self):
         if self.dashing == 'yes' and 0 < pygame.time.get_ticks() - self.dashing_time <= 500: self.speed = 12
@@ -108,9 +105,9 @@ class Player(Entity):
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
 
-        if self.attacking:
-            if current_time - self.attack_time >= self.cooldown:
-                self.attacking = False
+        if self.change_fps:
+            if current_time - self.change_fps_time >= self.cooldown:
+                self.change_fps = False
         
         if self.dashing:
             if current_time - self.dashing_time >= 2000:

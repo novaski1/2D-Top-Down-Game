@@ -63,7 +63,6 @@ class Level:
             bullet_direction = (mouse_pos[0]+self.visible_sprites.offset.x,mouse_pos[1]+self.visible_sprites.offset.y)
             self.mob_group.append(Mob((bullet_direction),[self.visible_sprites,self.obstacle_sprites],self.visible_sprites,self.obstacle_sprites,self.player,len(self.mob_group)))
             if len(self.mob_group) > 10: self.mob_group.pop(0)
-            print(len(self.mob_group))
        
     def shooting_direction(self,offset,player_rect,mouse_pos):
         bullet_direction = (-player_rect.centerx+mouse_pos[0]+offset.x,-player_rect.centery+mouse_pos[1]+offset.y)
@@ -91,9 +90,9 @@ class Level:
         self.visible_sprites.update()
         self.visible_sprites.sprite_update(self.player)
         #self.visible_sprites.draw_hitbox(screen)
-        debug(self.cooldowns)
         self.debug_hitboxes()
         self.cooldowns()
+        debug(FPS)
 
 class YSortCameraGroup(pygame.sprite.Group):
     def __init__(self):

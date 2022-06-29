@@ -49,17 +49,17 @@ class Entity(pygame.sprite.Sprite):
             if not 'idle' in self.status and not 'attack' in self.status:
                 self.status = self.status + '_idle'
         
-        if self.attacking:
-            self.direction.x = 0
-            self.direction.y = 0
-            if not 'attack' in self.status:
-                if 'idle' in self.status:
-                    self.status = self.status.replace('_idle','_attack')
-                else:
-                    self.status = self.status + '_attack'
-        else:
-            if 'attack' in self.status:
-                self.status = self.status.replace('_attack','')
+        #if self.attacking:
+        #    self.direction.x = 0
+        #    self.direction.y = 0
+        #    if not 'attack' in self.status:
+        #        if 'idle' in self.status:
+        #            self.status = self.status.replace('_idle','_attack')
+        #        else:
+        #            self.status = self.status + '_attack'
+        #else:
+        #    if 'attack' in self.status:
+        #        self.status = self.status.replace('_attack','')
 
     def move(self,speed):
         if self.direction.magnitude() != 0:

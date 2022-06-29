@@ -139,5 +139,3 @@ class Mob(Entity):
         self.move(self.speed)
         self.animate()
         self.stats_update()
-
-        debug(self.bumped)
