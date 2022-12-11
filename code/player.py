@@ -27,18 +27,19 @@ class Player(Entity):
 
         # Movement
         self.direction = pygame.math.Vector2()
-        self.speed = 5
+        self.speed = 11
         self.change_fps = False
         self.cooldown = 400
         self.change_fps_time = None
         self.dashing = 'no'
         self.dashing_time = 100
+        self.speed_increase = False
 
         # Position
         self.chunk_pos = [None,None]
 
         # Figthing
-        self.gun = Gun(random.choice(range(2,6)),random.choice(range(15,40)))
+        self.gun = Gun(random.choice(range(5,20)),random.choice(range(50,100)))
         self.last_cooldown = 0
 
         # Other
@@ -85,6 +86,8 @@ class Player(Entity):
         else:
             self.direction.x = 0
         
+        if self.direction.x == 0 and self.direction.y == 0: self.speed_increase = False
+        
         # Attack input
         if keys[pygame.K_p]:
             if self.change_fps == False: 
@@ -94,13 +97,26 @@ class Player(Entity):
                 if globals()['FPS'] == 30: globals()['FPS'] = 60
                 if globals()['FPS'] == 60: globals()['FPS'] = 165
                 if globals()['FPS'] == 165: globals()['FPS'] = 30
+        
+        if keys[pygame.K_SPACE]:
+            if self.dashing == 'no': 
+                self.dashing = 'yes'
+                self.dashing_time = pygame.time.get_ticks()
+    
+    def speed_update(self):
+        if self.direction.x in (-1,1) or self.direction.y in (-1,1):
+            if self.speed_increase == False:
+                self.speed = 3
+                self.speed_increase = True
+            else:  
+                self.speed += 0.0001
+                if self.speed >= 15: self.speed = 15
 
-            
-            
     
     def dash(self):
-        if self.dashing == 'yes' and 0 < pygame.time.get_ticks() - self.dashing_time <= 500: self.speed = 12
-        else: self.speed = 5
+        if self.dashing == 'yes' and 0 < pygame.time.get_ticks() - self.dashing_time <= 500: self.speed = 20
+        else: self.speed = 15
+
     
     def cooldowns(self):
         current_time = pygame.time.get_ticks()
@@ -110,7 +126,7 @@ class Player(Entity):
                 self.change_fps = False
         
         if self.dashing:
-            if current_time - self.dashing_time >= 2000:
+            if current_time - self.dashing_time >= 400:
                 self.dashing = 'no'
         
         self.last_cooldown += 1
@@ -122,6 +138,7 @@ class Player(Entity):
         self.get_status()
         self.animate()
         self.dash()
+        self.speed_update()
         self.move(self.speed)
         #debug(self.status)
     

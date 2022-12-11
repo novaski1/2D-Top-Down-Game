@@ -112,6 +112,8 @@ class YSortCameraGroup(pygame.sprite.Group):
         # Chunk based terrain display
         for i in [-2,-1,0,1,2]:
             for j in [-1,0,1]:
+        #for i in [0]:
+        #    for j in [0]:
                 try:
                     x = player.chunk_pos[0]+i
                     y = player.chunk_pos[1]+j

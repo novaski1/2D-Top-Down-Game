@@ -66,7 +66,7 @@ class Bullet(pygame.sprite.Sprite):
 
 
     def destroy(self):
-        if self.living_time >= 100: self.kill()
+        if self.living_time >= 200: self.kill()
         self.living_time += 1
         if self.death == True: self.death_time -= 1
         if self.death_time <= 0: self.kill()
